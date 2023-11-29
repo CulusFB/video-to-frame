@@ -2,9 +2,11 @@ import cv2
 import os
 import sys
 from function import globals as gl
+import flet
+import time
 
 
-def frame_cut(file: str, frame_to_cut: int, save_dir: str):
+def frame_cut(file: str, frame_to_cut: int, save_dir: str, prb, page):
     myfile = cv2.VideoCapture(gl.path)
     new_directory = f'{save_dir}/{file.split(".")[0]}'
     if not os.path.isdir(new_directory):
@@ -21,6 +23,8 @@ def frame_cut(file: str, frame_to_cut: int, save_dir: str):
     while True:
         # sys.stdout.write(f'\r{round((framenumber / total_frames) * 100, 1)} %')  # My progress bar
         framenumber += 1
+        prb.value = (framenumber / total_frames)
+        page.update()
         ret, frame = myfile.read()
         if not ret:
             break

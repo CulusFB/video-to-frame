@@ -1,7 +1,9 @@
+import time
+
 from function.cut_frame import frame_cut
 import flet as ft
 from function import globals as gl
-
+from threading import  Thread
 # file = '3. конец линии.MP4'  # Имя видеофайла
 # frame_to_cut = 5  # Колиичество пропускаемых кадров перед сохранением изображения
 
@@ -30,8 +32,9 @@ def main(page: ft.Page):
             prb.visible = True
             page.update()
             done_txt.value = 'Файл успешно обработан'
+
             try:
-                frame_cut(gl.filename, int(txt_number.value), gl.save_path)
+               frame_cut(gl.filename, int(txt_number.value), gl.save_path, prb, page)
             except Exception as exp:
                 done_txt.value = f'Произошла непредвиденная ошибка {exp}'
                 prb.visible = False
