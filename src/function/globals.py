@@ -1,3 +1,3 @@
 filename = 'Файл не выбран'
-path =''
-save_path =''
+path = ''
+save_path = ''

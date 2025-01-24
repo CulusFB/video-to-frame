@@ -1,3 +1,6 @@
-venv/
-Externa Libraries/
+.venv/
 *.jpg
+build/
+dist/
+*.spec
+.idea/
